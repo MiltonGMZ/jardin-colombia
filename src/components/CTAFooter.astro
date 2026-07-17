@@ -1,0 +1,99 @@
+---
+const WHATSAPP = 'https://wa.me/+573208233636';
+---
+<section class="cta">
+  <div class="wrap cta__inner" data-reveal>
+    <p class="eyebrow cta__eyebrow">La belleza de cada temporada</p>
+    <h2 class="cta__title">Florece <em>aquí</em>.</h2>
+    <a class="btn btn-solid cta__btn" href={WHATSAPP} target="_blank" rel="noopener">
+      Escríbenos por WhatsApp ↗
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <span class="footer__logo">JARDÍN C<span class="o-flower" aria-hidden="true"></span>LOMBIA</span>
+      <p>Producción y exportación de flores colombianas — Bogotá, Colombia.</p>
+    </div>
+
+    <div class="footer__col">
+      <p class="eyebrow">Contacto</p>
+      <ul>
+        <li><a href={WHATSAPP} target="_blank" rel="noopener">(+57) 320 823 6636</a></li>
+        <li><a href="mailto:servicioalcliente@jardincolombiasas.com">servicioalcliente@jardincolombiasas.com</a></li>
+        <li>Bogotá, Colombia</li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="eyebrow">Síguenos</p>
+      <ul>
+        <li><a href="https://www.instagram.com/jardin_colombia/" target="_blank" rel="noopener">Instagram — @jardin_colombia</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="eyebrow">Explora</p>
+      <ul>
+        <li><a href="#quienes-somos">Quiénes somos</a></li>
+        <li><a href="#exportacion">Exportación</a></li>
+        <li><a href="#plantas">Plantas</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap footer__bottom">
+    <span>© {new Date().getFullYear()} Jardín Colombia S.A.S. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<style>
+  .cta {
+    background: linear-gradient(160deg, var(--mango) 0%, var(--rose) 100%);
+    padding: clamp(90px, 14vw, 180px) 0;
+    text-align: center;
+  }
+  .cta__eyebrow { color: var(--ink); margin-bottom: 20px; }
+  .cta__title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    color: var(--paper);
+    line-height: 0.9;
+    margin-bottom: 40px;
+  }
+  .cta__title em { font-style: italic; -webkit-text-stroke: 1.5px var(--paper); color: transparent; }
+  .cta__btn { background: var(--ink); border-color: var(--ink); }
+  .cta__btn:hover { background: var(--paper); color: var(--ink); }
+
+  .footer { background: var(--ink); color: var(--paper); padding: 64px 0 28px; }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(250,247,242,.16);
+  }
+  .footer__logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: .1em;
+    font-size: .95rem;
+  }
+  .footer__brand p { opacity: .68; font-size: .88rem; max-width: 32ch; margin-top: 14px; }
+  .footer .eyebrow { opacity: .55; margin-bottom: 16px; }
+  .footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: .9rem; }
+  .footer__col a { opacity: .85; }
+  .footer__col a:hover { opacity: 1; text-decoration: underline; }
+
+  .footer__bottom {
+    padding-top: 24px;
+    font-size: .78rem;
+    opacity: .5;
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 760px) {
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

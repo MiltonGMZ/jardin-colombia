@@ -1,0 +1,144 @@
+---
+const WHATSAPP = 'https://wa.me/+573208233636';
+---
+<section class="hero" id="top">
+  <video
+    class="hero__video"
+    autoplay muted loop playsinline
+    poster="/media/images/hero-poster.jpg"
+  >
+    <source src="/media/videos/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="hero__content wrap">
+    <h1 class="hero__title">
+      <span class="hero__word">JARD<span class="hero__flower-letter">Í</span>N</span>
+      <span class="hero__word hero__word--outline">COL<span class="hero__flower-letter hero__flower-letter--big">O</span>MBIA</span>
+    </h1>
+
+    <div class="hero__foot">
+      <p class="eyebrow hero__eyebrow">
+        <span class="hero__pulse" aria-hidden="true"></span>
+        Bogotá · 10 años exportando belleza
+      </p>
+      <p class="hero__claim">
+        Flores colombianas, cultivadas con pasión y enviadas al mundo con
+        calidad, frescura y puntualidad.
+      </p>
+      <div class="hero__ctas">
+        <a class="btn btn-solid" href={WHATSAPP} target="_blank" rel="noopener">Pide tu bouquet ↗</a>
+        <a class="btn btn-ghost-light" href="#exportacion">Ver catálogo</a>
+      </div>
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#quienes-somos" aria-label="Ir a la siguiente sección">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero__video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .hero__scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(0deg, rgba(15,27,18,.86) 0%, rgba(15,27,18,.25) 46%, rgba(15,27,18,.35) 100%);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-top: 160px;
+    padding-bottom: 56px;
+  }
+
+  .hero__title {
+    color: var(--paper);
+    font-size: clamp(3rem, 11vw, 9.5rem);
+    line-height: 0.86;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(28px, 5vw, 56px);
+  }
+  .hero__word { display: block; }
+  .hero__word--outline {
+    -webkit-text-stroke: 1.5px var(--paper);
+    color: transparent;
+  }
+  .hero__flower-letter { color: var(--rose); -webkit-text-stroke: 0; }
+  .hero__flower-letter--big { color: var(--mango); -webkit-text-stroke: 0; }
+
+  .hero__foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: end;
+    color: var(--paper);
+    border-top: 1px solid rgba(250,247,242,.3);
+    padding-top: 20px;
+  }
+  .hero__eyebrow { grid-column: 1 / 2; opacity: .9; }
+  .hero__pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rose);
+    display: inline-block;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1);} 50% {opacity:.4; transform:scale(1.4);} }
+
+  .hero__claim {
+    grid-column: 1 / 2;
+    max-width: 34ch;
+    font-size: 1rem;
+    opacity: .92;
+    margin: 10px 0 0;
+  }
+  .hero__ctas {
+    grid-column: 2 / 3;
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 22px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 26px; height: 42px;
+    border: 1.5px solid rgba(250,247,242,.7);
+    border-radius: 20px;
+  }
+  .hero__scroll span {
+    position: absolute; top: 8px; left: 50%;
+    width: 4px; height: 8px;
+    background: var(--paper);
+    border-radius: 3px;
+    transform: translateX(-50%);
+    animation: scrollDot 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollDot { 0% { top:8px; opacity:1;} 70% { top:22px; opacity:0;} 100% { top:8px; opacity:0;} }
+
+  @media (max-width: 760px) {
+    .hero__content { padding-top: 120px; }
+    .hero__foot { grid-template-columns: 1fr; }
+    .hero__eyebrow, .hero__claim { grid-column: 1; }
+    .hero__ctas { grid-column: 1; justify-content: flex-start; }
+  }
+</style>

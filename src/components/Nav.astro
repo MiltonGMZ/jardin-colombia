@@ -1,0 +1,182 @@
+---
+const links = [
+  { href: '#quienes-somos', label: 'Quiénes somos' },
+  { href: '#exportacion', label: 'Exportación' },
+  { href: '#temporada', label: 'Temporada' },
+  { href: '#plantas', label: 'Plantas' },
+  { href: '#eventos', label: 'Eventos' },
+];
+const WHATSAPP = 'https://wa.me/+573208233636';
+---
+<header class="nav">
+  <div class="nav__inner wrap">
+    <a href="#top" class="nav__logo" aria-label="Jardín Colombia — inicio">
+      <span class="nav__logo-mark" aria-hidden="true">
+        <span class="dot dot--n"></span><span class="dot dot--e"></span>
+        <span class="dot dot--s"></span><span class="dot dot--w"></span>
+        <span class="dot dot--core"></span>
+      </span>
+      JARDÍN <span class="nav__logo-o">C<span class="o-flower" aria-hidden="true"></span>LOMBIA</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegación principal">
+      {links.map((l) => (
+        <a href={l.href}>{l.label}</a>
+      ))}
+    </nav>
+
+    <a class="btn btn-solid nav__cta" href={WHATSAPP} target="_blank" rel="noopener">
+      Contáctanos
+    </a>
+
+    <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav__badge" aria-hidden="true">
+    <svg viewBox="0 0 100 100" class="nav__badge-ring">
+      <defs>
+        <path id="badgeCircle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+      </defs>
+      <text font-family="Space Mono, monospace" font-size="8.6" letter-spacing="2" fill="var(--ink)">
+        <textPath href="#badgeCircle" startOffset="0%">
+          · BOGOTÁ COLOMBIA · 10 AÑOS FLORECIENDO ·
+        </textPath>
+      </text>
+    </svg>
+    <span class="nav__badge-core"></span>
+  </div>
+
+  <div class="nav__mobile" data-menu>
+    <nav aria-label="Navegación móvil">
+      {links.map((l) => (
+        <a href={l.href} data-menu-link>{l.label}</a>
+      ))}
+      <a class="btn btn-solid" href={WHATSAPP} target="_blank" rel="noopener">Contáctanos</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 100;
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 3vw, 34px);
+    background: var(--paper);
+    border-radius: var(--radius-pill);
+    margin: 14px clamp(14px, 3vw, 40px) 0;
+    padding: 10px 10px 10px 20px;
+    box-shadow: 0 8px 30px rgba(15, 27, 18, 0.12);
+    max-width: calc(var(--container) - 2 * clamp(14px, 3vw, 40px));
+  }
+
+  .nav__logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .nav__logo-o { display: inline-flex; align-items: center; }
+  .nav__logo-mark {
+    position: relative;
+    width: 20px; height: 20px;
+    flex: none;
+  }
+  .nav__logo-mark .dot {
+    position: absolute;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--forest);
+  }
+  .dot--core { inset: 6px; background: var(--rose); }
+  .dot--n { top: -2px; left: 7px; }
+  .dot--s { bottom: -2px; left: 7px; }
+  .dot--e { right: -2px; top: 7px; }
+  .dot--w { left: -2px; top: 7px; }
+
+  .nav__links {
+    display: flex;
+    gap: clamp(10px, 2vw, 22px);
+    font-size: 0.86rem;
+    font-weight: 500;
+    flex: 1;
+  }
+  .nav__links a {
+    padding: 8px 4px;
+    opacity: 0.78;
+    transition: opacity .25s var(--ease);
+  }
+  .nav__links a:hover { opacity: 1; }
+
+  .nav__cta { padding: 11px 22px; font-size: 0.85rem; margin-left: auto; }
+
+  .nav__burger { display: none; }
+
+  .nav__badge {
+    position: fixed;
+    top: 20px; right: clamp(14px, 3vw, 40px);
+    width: 74px; height: 74px;
+    z-index: 101;
+  }
+  .nav__badge-ring { width: 100%; height: 100%; animation: spin 16s linear infinite; }
+  .nav__badge-core {
+    position: absolute; inset: 30%;
+    background: var(--rose);
+    border-radius: 50%;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .nav__mobile { display: none; }
+
+  @media (max-width: 900px) {
+    .nav__links { display: none; }
+    .nav__cta { display: none; }
+    .nav__burger {
+      display: flex; flex-direction: column; gap: 4px;
+      margin-left: auto; background: none; border: 0; padding: 10px;
+      cursor: pointer;
+    }
+    .nav__burger span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+    .nav__badge { width: 56px; height: 56px; top: 16px; }
+
+    .nav__mobile {
+      position: fixed; inset: 0; top: 74px;
+      background: var(--ink);
+      color: var(--paper);
+      transform: translateY(-110%);
+      transition: transform .5s var(--ease);
+      z-index: 99;
+      display: flex;
+    }
+    .nav__mobile.is-open { transform: translateY(0); }
+    .nav__mobile nav { display: flex; flex-direction: column; gap: 4px; padding: 32px clamp(20px,6vw,56px); width: 100%; }
+    .nav__mobile a { font-family: var(--font-display); font-size: 2rem; padding: 14px 0; border-bottom: 1px solid rgba(250,247,242,.14); }
+    .nav__mobile .btn { margin-top: 20px; align-self: flex-start; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-menu]');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(!!open));
+  });
+  document.querySelectorAll('[data-menu-link]').forEach((a) =>
+    a.addEventListener('click', () => {
+      menu?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

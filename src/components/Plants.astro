@@ -1,0 +1,90 @@
+---
+const tips = [
+  { title: 'Riego adecuado', body: 'Evita el exceso de agua; cada planta tiene su ritmo.' },
+  { title: 'Luz correcta', body: 'Ubícalas según sus necesidades de sol o sombra.' },
+  { title: 'Mantenimiento constante', body: 'Retira hojas secas y revisa su estado regularmente.' },
+];
+const plants = [
+  { name: 'Orquídea', img: '/media/images/orquidea.jpg' },
+  { name: 'Planta de interior', img: '/media/images/planta.jpg' },
+  { name: 'Ponsetia', img: '/media/images/ponsettia.jpg' },
+  { name: 'Bromelia', img: '/media/images/bromelia.jpg' },
+  { name: 'Suculenta', img: '/media/images/suculenta.jpg' },
+];
+---
+<section class="plants" id="plantas">
+  <div class="wrap">
+    <div class="plants__head" data-reveal>
+      <p class="eyebrow plants__eyebrow">05 · Plantas de temporada</p>
+      <h2 class="plants__title">Vida y color para<br />cada espacio.</h2>
+      <p class="plants__body">
+        Nuestras plantas de temporada son seleccionadas cuidadosamente para
+        ofrecer frescura, color y vida. Ideales para cada época del año, se
+        adaptan al clima y resaltan la belleza natural de hogares, oficinas
+        y eventos.
+      </p>
+    </div>
+
+    <div class="plants__tips" data-reveal>
+      {tips.map((t) => (
+        <div class="plants__tip">
+          <h3>{t.title}</h3>
+          <p>{t.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="plants__gallery" data-reveal>
+      {plants.map((p) => (
+        <figure class="plants__item">
+          <img src={p.img} alt={p.name} loading="lazy" />
+          <figcaption>{p.name}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .plants { padding: clamp(80px, 10vw, 140px) 0; background: var(--paper); }
+  .plants__head { max-width: 60ch; margin-bottom: clamp(40px, 6vw, 64px); }
+  .plants__eyebrow { color: var(--forest); margin-bottom: 18px; }
+  .plants__title { font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.06; margin-bottom: 18px; }
+  .plants__body { opacity: .82; margin: 0; }
+
+  .plants__tips {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(15,27,18,.14);
+    border-bottom: 1px solid rgba(15,27,18,.14);
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  .plants__tip h3 { font-size: 1rem; margin: 0 0 6px; color: var(--forest); }
+  .plants__tip p { margin: 0; font-size: .88rem; opacity: .72; }
+
+  .plants__gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .plants__item { margin: 0; }
+  .plants__item img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    border-radius: 16px;
+  }
+  .plants__item figcaption {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    opacity: .65;
+  }
+
+  @media (max-width: 900px) {
+    .plants__tips { grid-template-columns: 1fr; gap: 16px; }
+    .plants__gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

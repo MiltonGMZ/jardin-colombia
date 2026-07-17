@@ -1,0 +1,137 @@
+---
+const stops = [
+  { code: 'BOG', name: 'Bogotá', origin: true },
+  { code: 'CUR', name: 'Curazao' },
+  { code: 'ARU', name: 'Aruba' },
+  { code: 'PAN', name: 'Panamá' },
+  { code: 'USA', name: 'Estados Unidos' },
+];
+
+const steps = [
+  { n: '01', title: 'Proceso', body: 'Selección y preparación cuidadosa de cada flor.' },
+  { n: '02', title: 'Empaque', body: 'Protección adecuada para conservar frescura y calidad.' },
+  { n: '03', title: 'Envío', body: 'Logística eficiente para entrega segura y oportuna.' },
+];
+---
+<section class="route" id="exportacion">
+  <div class="wrap">
+    <div class="route__head" data-reveal>
+      <p class="eyebrow route__eyebrow">02 · Exportación</p>
+      <h2 class="route__title">
+        Exportación con<br />esencia colombiana.
+      </h2>
+      <p class="route__body">
+        Exportamos flores con altos estándares de calidad, empaque y
+        logística, garantizando frescura y excelencia en cada destino
+        internacional.
+      </p>
+    </div>
+
+    <div class="route__manifest" data-reveal aria-hidden="false">
+      <span class="vh">Ruta de exportación: Bogotá hacia Curazao, Aruba, Panamá y Estados Unidos</span>
+      <svg class="route__line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="20" y1="20" x2="980" y2="20" class="route__dash" />
+        <circle r="5" class="route__mover">
+          <animateMotion dur="7s" repeatCount="indefinite" path="M 20,20 L 980,20" />
+        </circle>
+      </svg>
+      <div class="route__stops">
+        {stops.map((s) => (
+          <div class={`route__stop ${s.origin ? 'is-origin' : ''}`}>
+            <span class="route__code">{s.code}</span>
+            <span class="route__name">{s.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="route__steps">
+      {steps.map((s, i) => (
+        <div class="route__step" data-reveal style={`transition-delay:${i * 120}ms`}>
+          <span class="route__step-n">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .route {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(80px, 10vw, 140px) 0;
+  }
+  .route__eyebrow { color: var(--mango); margin-bottom: 18px; }
+  .route__title {
+    font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+    line-height: 1.04;
+    max-width: 16ch;
+    margin-bottom: 20px;
+  }
+  .route__body { max-width: 46ch; opacity: .78; font-size: 1rem; margin: 0; }
+
+  .route__manifest {
+    margin: clamp(56px, 8vw, 96px) 0 clamp(48px, 6vw, 80px);
+    position: relative;
+  }
+  .route__line { width: 100%; height: 20px; overflow: visible; }
+  .route__dash {
+    stroke: rgba(250,247,242,.28);
+    stroke-width: 2;
+    stroke-dasharray: 3 10;
+    stroke-linecap: round;
+  }
+  .route__mover { fill: var(--rose); }
+
+  .route__stops {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .route__stop {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+  }
+  .route__code {
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    letter-spacing: .04em;
+  }
+  .route__stop.is-origin .route__code { color: var(--rose); }
+  .route__name {
+    font-size: 0.7rem;
+    opacity: .62;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  .route__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 4vw, 40px);
+    border-top: 1px solid rgba(250,247,242,.18);
+    padding-top: clamp(36px, 5vw, 56px);
+  }
+  .route__step-n {
+    font-family: var(--font-mono);
+    color: var(--mango);
+    font-size: .8rem;
+  }
+  .route__step h3 {
+    font-size: 1.4rem;
+    margin: 10px 0 8px;
+  }
+  .route__step p { margin: 0; opacity: .72; font-size: .92rem; max-width: 30ch; }
+
+  @media (max-width: 760px) {
+    .route__steps { grid-template-columns: 1fr; }
+    .route__stops { flex-wrap: wrap; gap: 18px 10px; }
+    .route__stop { flex: 1 1 30%; }
+  }
+</style>

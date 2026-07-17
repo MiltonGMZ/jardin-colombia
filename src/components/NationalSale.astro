@@ -1,0 +1,93 @@
+---
+const steps = [
+  { n: '01', title: 'Elige la ocasión', body: 'Selecciona la festividad o momento especial.' },
+  { n: '02', title: 'Diseño floral', body: 'Creamos tu arreglo con flores frescas.' },
+  { n: '03', title: 'Entrega local', body: 'Logística eficiente para entrega segura y oportuna.' },
+];
+const gallery = [
+  '/media/images/ramo.jpg',
+  '/media/images/ramo-1.jpg',
+  '/media/images/ramo-2.jpg',
+  '/media/images/ramo-3.jpg',
+];
+---
+<section class="national">
+  <div class="wrap national__grid">
+    <div class="national__copy" data-reveal>
+      <p class="eyebrow national__eyebrow">04 · Venta nacional</p>
+      <h2 class="national__title">
+        Arreglos florales para<br />cada ocasión especial.
+      </h2>
+      <p class="national__body">
+        Ofrecemos venta nacional de arreglos florales elaborados para cada
+        festividad del año, combinando flores frescas de alta calidad con
+        diseños que transmiten emociones y hacen de cada detalle un
+        recuerdo único.
+      </p>
+
+      <ol class="national__steps">
+        {steps.map((s) => (
+          <li>
+            <span class="national__step-n">{s.n}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <a class="btn btn-solid" href="https://wa.me/+573208233636" target="_blank" rel="noopener">
+        Pide tu arreglo ↗
+      </a>
+    </div>
+
+    <div class="national__gallery" data-reveal>
+      {gallery.map((src, i) => (
+        <div class={`national__ph national__ph--${i}`}>
+          <img src={src} alt="Arreglo floral Jardín Colombia" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .national { padding: clamp(80px, 10vw, 140px) 0; background: var(--cream-2); }
+  .national__grid {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: clamp(40px, 6vw, 90px);
+  }
+  .national__eyebrow { color: var(--forest); margin-bottom: 18px; }
+  .national__title { font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.06; margin-bottom: 20px; }
+  .national__body { max-width: 46ch; opacity: .82; margin-bottom: 34px; }
+
+  .national__steps { list-style: none; margin: 0 0 36px; padding: 0; display: grid; gap: 22px; }
+  .national__steps li { display: flex; gap: 18px; align-items: flex-start; }
+  .national__step-n {
+    font-family: var(--font-mono);
+    color: var(--rose);
+    font-size: .82rem;
+    padding-top: 4px;
+  }
+  .national__steps h3 { font-size: 1.1rem; margin: 0 0 4px; }
+  .national__steps p { margin: 0; opacity: .72; font-size: .9rem; }
+
+  .national__gallery {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .national__ph { border-radius: 18px; overflow: hidden; box-shadow: 0 16px 40px rgba(15,27,18,.14); }
+  .national__ph img { width: 100%; height: 100%; object-fit: cover; }
+  .national__ph--0 { aspect-ratio: 3/4; align-self: end; }
+  .national__ph--1 { aspect-ratio: 1/1; }
+  .national__ph--2 { aspect-ratio: 1/1; }
+  .national__ph--3 { aspect-ratio: 3/4; }
+
+  @media (max-width: 900px) {
+    .national__grid { grid-template-columns: 1fr; }
+  }
+</style>

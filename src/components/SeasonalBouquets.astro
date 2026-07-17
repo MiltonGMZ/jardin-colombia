@@ -1,0 +1,84 @@
+---
+const seasons = [
+  { name: 'San Valentín', img: '/media/images/san-valentin.jpg', tint: '#E8317B' },
+  { name: 'Día de la Mujer', img: '/media/images/dia-de-mujer.jpg', tint: '#D9C9F0' },
+  { name: 'Día de la Madre', img: '/media/images/dia-de-la-madre.jpg', tint: '#FF9F1C' },
+  { name: 'Halloween', img: '/media/images/halloween.jpg', tint: '#1F4D2C' },
+  { name: 'Acción de Gracias', img: '/media/images/accion-de-gracias.jpg', tint: '#FF9F1C' },
+  { name: 'Navidad', img: '/media/images/navidad.jpg', tint: '#E8317B' },
+];
+---
+<section class="season" id="temporada">
+  <div class="wrap season__head" data-reveal>
+    <p class="eyebrow season__eyebrow">03 · Exportación por temporada</p>
+    <h2 class="season__title">Bouquets de temporada<br />para exportación.</h2>
+  </div>
+
+  <div class="season__marquee" data-reveal>
+    <div class="season__track">
+      {[...seasons, ...seasons].map((s) => (
+        <div class="season__card" style={`--tint:${s.tint}`}>
+          <div class="season__img">
+            <img src={s.img} alt={`Bouquet de temporada — ${s.name}`} loading="lazy" />
+          </div>
+          <span class="season__name">{s.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="wrap">
+    <a class="btn btn-ghost-dark" href="https://wa.me/+573208233636" target="_blank" rel="noopener">
+      Pide tu bouquet de temporada ↗
+    </a>
+  </div>
+</section>
+
+<style>
+  .season { padding: clamp(80px, 10vw, 140px) 0; background: var(--paper); overflow: hidden; }
+  .season__head { margin-bottom: clamp(40px, 6vw, 64px); }
+  .season__eyebrow { color: var(--rose); margin-bottom: 18px; }
+  .season__title { font-size: clamp(2.2rem, 4.8vw, 3.8rem); line-height: 1.04; }
+
+  .season__marquee {
+    width: 100%;
+    margin-bottom: clamp(40px, 6vw, 64px);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .season__track {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    animation: marquee 34s linear infinite;
+  }
+  .season__marquee:hover .season__track { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .season__card {
+    position: relative;
+    width: clamp(200px, 22vw, 280px);
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    overflow: hidden;
+    flex: none;
+    background: var(--tint);
+  }
+  .season__img { position: absolute; inset: 0; }
+  .season__img img { width: 100%; height: 100%; object-fit: cover; }
+  .season__img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(15,27,18,.75), transparent 55%);
+  }
+  .season__name {
+    position: absolute; left: 18px; bottom: 16px;
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    z-index: 1;
+  }
+</style>
